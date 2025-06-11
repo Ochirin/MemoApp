@@ -11,6 +11,7 @@ const App = (): JSX.Element => {
     </View>
   )
 }
+export default App
 
 const styles = StyleSheet.create({
   container: {
@@ -21,6 +22,5 @@ const styles = StyleSheet.create({
   }
 })
 
-export default App
 
 
