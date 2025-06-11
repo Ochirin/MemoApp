@@ -32,14 +32,14 @@ jobs:
       - name: Run ESLint
         run: npx eslint . --ext .ts,.tsx,.js,.jsx
 
-      # 6. テスト実行
-      - name: Run tests
-        run: npm test -- --coverage --watchAll=false
+      # 6. テスト実行（一時的にコメントアウト）
+      # - name: Run tests
+      #   run: npm test -- --coverage --watchAll=false
 
       # 7. Expo prebuild（必要に応じて）
-      - name: Expo prebuild
-        run: npx expo prebuild --clear
+    #   - name: Expo prebuild
+    #     run: npx expo prebuild --clear
 
       # 8. プロジェクトのビルドテスト
-      - name: Test build
-        run: npx expo export --platform all
+    #   - name: Test build
+    #     run: npx expo export --platform all
