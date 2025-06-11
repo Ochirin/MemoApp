@@ -1,0 +1,45 @@
+name: Expo CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. リポジトリのコードをチェックアウト
+      - uses: actions/checkout@v4
+
+      # 2. Node.jsのセットアップ
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'  # より簡潔なキャッシュ設定
+
+      # 3. 依存関係のインストール
+      - name: Install dependencies
+        run: npm ci  # npm installより高速で確実
+
+      # 4. TypeScript型チェック
+      - name: TypeScript type check
+        run: npx tsc --noEmit
+
+      # 5. Lintチェック
+      - name: Run ESLint
+        run: npx eslint . --ext .ts,.tsx,.js,.jsx
+
+      # 6. テスト実行（一時的にコメントアウト）
+      # - name: Run tests
+      #   run: npm test -- --coverage --watchAll=false
+
+      # 7. Expo prebuild（必要に応じて）
+    #   - name: Expo prebuild
+    #     run: npx expo prebuild --clear
+
+      # 8. プロジェクトのビルドテスト
+    #   - name: Test build
+    #     run: npx expo export --platform all
